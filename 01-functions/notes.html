@@ -1,0 +1,444 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+sup {
+    font-size: 0.83em;
+    vertical-align: super;
+    line-height: 0;
+}
+* {
+	-webkit-print-color-adjust: exact;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+<title>Nano Hackers Extra Session 1</title>
+
+</head>
+<body>
+<h4>Nano Hackers Extra Session 1</h4>
+
+<h1>Functions!</h1>
+
+<blockquote><p>"Well-designed computational systems, like well-designed automobiles or nuclear reactors, are designed in a modular manner, so that the parts can be constructed, replaced, and debugged separately." — Abelson &amp; Sussman, <em>Structure and Interpretation of Computer Programs</em></p></blockquote>
+
+<h2>Warmup</h2>
+
+<p>We've seen functions before. Can anyone give some examples?</p>
+
+<p><code>alert</code>:</p>
+
+<pre><code>alert("Oy vey!");
+</code></pre>
+
+<p><code>jQuery</code> aka <code>$</code> aka "The money function" (thanks Sean):</p>
+
+<pre><code>$("#foo");
+</code></pre>
+
+<p><code>parseInt</code>:</p>
+
+<pre><code>parseInt("5");
+</code></pre>
+
+<p>So we've used functions. We have a feeling for what they are. But today we're going to dive deeper. We're going to learn how to write functions and some ways they can help us write better code.</p>
+
+<h2>Names</h2>
+
+<p>Functions let us give a name to a block of code. This helps make our programs more readable. For example, contrast these two programs:</p>
+
+<pre><code>var x = -5;
+var result;
+
+if (x &gt; 0) {
+    result = x;
+} else {
+    result = -x;
+}
+
+alert(result);
+</code></pre>
+
+<pre><code>function absoluteValue(x) {
+    if (x &gt; 0) {
+        return x;
+    } else {
+        return -x;
+    }
+}
+
+alert(absoluteValue(-5));
+</code></pre>
+
+<p>In the bottom example, it's obvious what we're doing to <code>x</code>: we're taking the absolute value! We don't have to decode that gnarly piece of code.</p>
+
+<p>When you're writing more complex programs or working with other people, good naming becomes even more important.</p>
+
+<h2>Reuse</h2>
+
+<p>Once we have <code>absoluteValue</code>, we can use it anywhere. We never have to write that <em>if</em> statement again.</p>
+
+<p>Suppose, for example, that we had this bit of code to compute the area of a rectangle:</p>
+
+<pre><code>var p1 = {x: 0, y: 0};
+var p2 = {x: 2, y: 2};
+
+var width = p1.x - p2.x;
+var height = p1.y - p2.y;
+
+width = (width &gt; 0) ? width : -width;
+height = (height &gt; 0) ? height : -height;
+
+var area = width * height;
+</code></pre>
+
+<p>With <code>absoluteValue</code>, the code becomes shorter and more readable:</p>
+
+<pre><code>var p1 = {x: 0, y: 0};
+var p2 = {x: 2, y: 2};
+
+var area = absoluteValue(p1.x - p2.x) * absoluteValue(p1.y - p2.y);
+</code></pre>
+
+<h2>Abstraction</h2>
+
+<p>Do you know how <code>$</code> works? Do you need to? If someone told you about <code>absoluteValue</code>, without showing you the code, could you use it?</p>
+
+<p>This phenomenon — where you use a function without knowing what's going on inside — is called <em>abstraction</em>.</p>
+
+<p>Abstraction lets us think at a higher level. It helps us keep our programs simple by separating different parts so that changes to one part don't affect the others.</p>
+
+<p>Imagine we think of a better way to implement <code>absoluteValue</code>:</p>
+
+<pre><code>function absoluteValue(x) {
+    return (x &gt; 0) ? x : -x;
+}
+</code></pre>
+
+<p>Do we have to change <code>area</code>?</p>
+
+<h2>JavaScript Syntax</h2>
+
+<p>How do we define a function in JavaScript?</p>
+
+<pre><code>function &lt;name&gt;(&lt;parameter1&gt;, &lt;parameter2&gt;, ...) {
+    &lt;body&gt;
+}
+</code></pre>
+
+<p>The <code>return</code> statement in the body is optional. If there's no <code>return</code> or the <code>return</code> isn't followed by a value, the function returns <code>undefined</code>.</p>
+
+<h2>Lab 1</h2>
+
+<ol>
+<li>Write a "number explorer" app. When you type a number, the app displays (1) the square, (2) the absolute value, and (3) whether the number is even or odd. Define a function for each property.</li>
+<li>Extend the number explorer to display the cube. See if you can modify the "square" function to handle any power.</li>
+<li>Extend the number explorer to display the next highest square number. For example, for 8, the next highest square number would be 9 (3 * 3). Re-use your existing functions.</li>
+</ol>
+
+
+<hr />
+
+<h2>Recursion</h2>
+
+<p>Does anyone know what factorial is? It's the product of all the numbers 1 to <em>n</em>. We write the factorial with an exclamation point after <em>n</em>:</p>
+
+<pre><code>1! = 1
+2! = 1 * 2 = 2
+3! = 1 * 2 * 3 = 6
+4! = ?
+</code></pre>
+
+<p>Suppose we have <em>3!</em> and we want to find <em>4!</em>. How do we do that? We multiply <em>3!</em> by 4.</p>
+
+<p>Can we generalize this? Suppose we have <em>(n - 1)!</em>. How do we find <em>n!</em>.</p>
+
+<p>Let's write this in code:</p>
+
+<pre><code>function factorial(n) {
+    return n * factorial(n - 1);
+}
+</code></pre>
+
+<p>This function is called <em>recursive</em>. In other words, it calls itself. We can use recursive functions to solve problems that can be split into similar sub-problems.</p>
+
+<p>But wait! What happens when we call <code>factorial</code>? We need to make sure that it terminates at some point:</p>
+
+<pre><code>function factorial(n) {
+    if (n === 1) {
+        return 1;
+    } else {
+        return n * factorial(n - 1);
+    }
+}
+</code></pre>
+
+<p>That's better!</p>
+
+<h2>Lab 2</h2>
+
+<ol>
+<li>Extend the number explorer to display the factorial</li>
+<li>Extend it to display the <em>sum</em> of numbers 1 to <em>n</em></li>
+<li>Extend it to display <em>Fibonacci(n)</em></li>
+</ol>
+
+
+<hr />
+
+<h2>Aside: First-Class Objects</h2>
+
+<p>In programming, a "first-class object" is something that participates in all the basic operations of a programming language. In JavaScript, strings are first-class objects. Numbers are first-class objects. What else?</p>
+
+<p>Functions!</p>
+
+<p>We can assign functions to variables:</p>
+
+<pre><code>var greet = function() {
+    alert("Hello, World!");
+};
+
+greet();
+</code></pre>
+
+<p>Pass them to other functions:</p>
+
+<pre><code>function perform(action) {
+    action();
+}
+
+perform(greet);
+</code></pre>
+
+<p>And even <em>return</em> them from functions:</p>
+
+<pre><code>function makeAdder(amount) {
+    var adder = function(n) {
+        return n + amount;
+    }
+
+    return adder;
+}
+
+var addOne = makeAdder(1);
+addOne(1);
+</code></pre>
+
+<h2>Higher-Order Functions</h2>
+
+<p>Consider two functions:</p>
+
+<pre><code>function doubleElements(array) {
+    var i;
+    var result = [];
+
+    for (i = 0; i &lt; array.length; ++i) {
+        result.push(array[i] * 2);      
+    }
+
+    return result;
+}
+</code></pre>
+
+<pre><code>function squareElements(array) {
+    var i;
+    var result = [];
+
+    for (i = 0; i &lt; array.length; ++i) {
+        result.push(array[i] * array[i]);
+    }
+
+    return result;
+}
+</code></pre>
+
+<p>What do they have in common? They both take an array, loop through it, and do something to each of the elements.</p>
+
+<p>What's wrong with this code? That old scourge—duplication. What's duplicated? The <em>procedure</em> of looping and doing something to each element. Now that we know functions are first-class objects, how might we reduce this duplication?</p>
+
+<pre><code>function map(array, operation) {
+    var result = [];
+
+    for (i = 0; i &lt; array.length; ++i) {
+        result.push(operation(array[i]));
+    }
+
+    return result;
+}
+
+map([1, 2, 3], function(x) { return x * 2 });
+map([1, 2, 3], function(x) { return x * x });
+</code></pre>
+
+<p>Functions like this, which take a function as a parameter, are called <em>higher-order functions</em>.</p>
+
+<h2>Lab 3/Homework: Mobster</h2>
+
+<p>In this homework, you'll create an app called Mobster that lets you view, sort, and filter a database of Minecraft mobs.</p>
+
+<h4>Setup</h4>
+
+<p>Find the <code>mobs.js</code> file in the <code>01-functions</code> folder of the <code>jonahb/nano-extra</code> repo on GitHub. (You can clone the repo or get the file through GitHub in your browser.) This file is a database of the mobs you'll be using in the homework.</p>
+
+<h4>Part 1</h4>
+
+<p>Create a page that displays a list of all the mobs from <code>mobs.js</code>. When the page loads, it should call a function called <code>updateList</code> loops through the mobs and creates a list item for each one.</p>
+
+<h4>Part 2</h4>
+
+<p>Add a sort button. The handler for the button should call a new function, <code>sort</code>, that sorts the mobs by name. Then it should update the list (using <code>updateList</code>). If you need help writing <code>sort</code>, google "selection sort" or "sort algorithms" (or ask on Slack).</p>
+
+<h4>Part 3</h4>
+
+<p>Add two other sort buttons: One that sorts by health and one that sorts by type (critter or monster). Modify <code>sort</code> so that it can sort by any attribute. (Hint: You'll be making <code>sort</code> a higher-order function.)</p>
+
+<h4>Extra</h4>
+
+<ul>
+<li>Make the mob list pretty. There are image URLs in <code>mobs.js</code>.</li>
+<li>Add filters so that you can filter the list to just critters or monsters.</li>
+<li>Use positioning and jQuery animation to animate the sort (hard!).</li>
+</ul>
+
+</body>
+</html>
