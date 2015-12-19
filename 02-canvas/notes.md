@@ -199,18 +199,7 @@ context.stroke();
 2. Write a function that creates a circular path. (`stroke` or `fill` will then be used to draw the circle.) For example: `function circle(context, x, y, radius) { ... }`
 
 3. It's 1982 and Steve Jobs is your boss. Write a function to create a rounded- rectangle path. (`stroke` or `fill` will then be used to draw the path.) For example: `function roundRect(context, x, y, width, height, cornerRadius) { ... }`
-
-### Animation
-
-Do you know how they made animated movies before computers? Artists drew and painted each frame by hand: 24 frames per second!
-
-In truth, things haven't changed that much. We create realtime animations (like games) the same way. We define a `draw` function, and we ask that computer to call that function whenever it repaints the screen.
-
 ```
-window.requestAnimationFrame(...)
-```
-
-TBD
 
 ### Homework
 
@@ -218,4 +207,4 @@ TBD
 
 2. Check out the [Mozilla canvas tutorial]([https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial]).
 
-3. Incorporate some things we didn't cover into your drawing: gradients, patterns, text, transforms, Bezier curves, etc.
+3. Incorporate some things we didn't cover into your drawing: animation gradients, patterns, text, transforms, Bezier curves, etc.
