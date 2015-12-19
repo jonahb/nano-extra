@@ -1,0 +1,43 @@
+<html>
+  <body onload="draw();">
+    <canvas id="main" width="1000" height="1000"></canvas>
+    <script>
+      function draw() {
+        var width = 10;
+        var height = 10;
+        var boxSize = 30;
+
+        var r, g, b;
+        var i, j;
+
+        var canvas = document.getElementById("main");
+        var context = canvas.getContext("2d");
+
+        for (i = 0; i < width; i++) {
+          for (j = 0; j < height; j++) {
+            r = random(0, 256);
+            g = random(0, 256);
+            b = random(0, 256);
+            
+            context.fillStyle = rgbString(r, g, b);
+            context.fillRect(i * boxSize, j * boxSize, boxSize, boxSize);
+          }
+        }        
+      }
+
+      /*
+        Returns a CSS rgb color string with the given components
+      */
+      function rgbString(r, g, b) {
+        return "rgb(" + [r, g, b].join(", ") + ")";
+      }
+
+      /*
+        Returns a random integer n where min <= n < max
+      */
+      function random(min, max) {
+        return min + Math.floor(max * Math.random());
+      }
+    </script>
+  </body>
+</html>
