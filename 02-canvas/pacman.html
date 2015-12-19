@@ -1,0 +1,24 @@
+<html>
+  <body>
+    <canvas id="main" width="1000" height="1000"></canvas>
+    <script>
+      var canvas = document.getElementById("main");
+      var context = canvas.getContext("2d");
+
+      var mouthSize = 0.15;
+      var center = {x: 150, y: 150};
+
+      context.beginPath();      
+      
+      context.moveTo(center.x, center.y);
+      context.arc(center.x, center.y, 100, mouthSize * Math.PI, (2 - mouthSize) * Math.PI);
+      context.closePath();
+
+      context.fillStyle = "gold";
+      context.lineWidth = 5;
+
+      context.fill();
+      context.stroke();
+    </script>
+  </body>
+</html>
