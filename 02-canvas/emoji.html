@@ -1,0 +1,28 @@
+<html>
+  <body>
+    <canvas id="main"></canvas>
+    <script>
+      var canvas = document.getElementById("main");
+      var context = canvas.getContext("2d");
+
+      context.beginPath();
+
+      // outer circle
+      context.arc(75, 75, 50, 0, Math.PI * 2, true);
+
+      // mouth (clockwise)
+      context.moveTo(110, 75);
+      context.arc(75, 75,35, 0, Math.PI, false);  
+
+      // left eye 
+      context.moveTo(65, 65);
+      context.arc(60, 65, 5, 0, Math.PI * 2, true);  
+
+      // right eye  
+      context.moveTo(95, 65);
+      context.arc(90, 65, 5, 0, Math.PI * 2, true);  
+
+      context.stroke();
+    </script>
+  </body>
+</html>
