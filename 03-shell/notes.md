@@ -10,9 +10,9 @@ A programmer using a GUI is like a surgeon wearing mittens. The shell is our ans
 2. Find Terminal in _Applications/Utilities_
 3. Double-click Terminal
 
-What do you see? This line of text ending in `$` is called the _prompt_. It means the shell waiting, asking us to type in a command.
+What do you see? This line of text ending in `$` is called the _prompt_. It means the shell is waiting, asking us to type in a command.
 
-When we type a command, the shell forward it to the operating system and prints the result.
+When we type a command, the shell forwards it to the operating system and prints the result.
 
 ## Commands
 
