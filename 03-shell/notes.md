@@ -78,10 +78,6 @@ Homebrew is a _package manager_. It helps us install new programs so we can do m
 
 After installing Homebrew (http://brew.sh), install the package `cowsay` and put it to use ...
 
-## Break (15 Minutes)
-
-Try experimenting with the `lynx` and `wget` packages.
-
 ## Launching II
 
 As programmers, we use Terminal a lot. Let's make it easier to launch.
