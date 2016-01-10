@@ -4,11 +4,6 @@
 
 A programmer using a GUI is like a surgeon wearing mittens. The shell is our answer. It'll let us talk directly to the operating system and see what's going on under the hood.
 
-## Prep
-
-1. Everyone have a Mac or paired up with someone with a Mac?
-2. Everyone on the network?
-
 ## Launching
 
 1. Open a Finder window
