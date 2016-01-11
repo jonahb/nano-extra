@@ -2,7 +2,7 @@
 
 # The Shell
 
-A programmer using a GUI is like a surgeon wearing mittens. The shell is our answer. It'll let us talk directly to the operating system and see what's going on under the hood.
+> Somewhere outside of and beyond our universe is an operating system, coded up over incalculable spans of time by some kind of hacker-demiurge. The cosmic operating system uses a command-line interface. It runs on something like a teletype, with lots of noise and heat; punched-out bits flutter down into its hopper like drifting stars. The demiurge sits at his teletype, pounding out one command line after another, specifying the values of fundamental constants of physics: universe -G 6.672e-11 -e 1.602e-19 -h 6.626e-34 -protonmass 1.673e-27.... —Neal Stephenson, In the Beginning was the Command Line
 
 ## Launching
 
