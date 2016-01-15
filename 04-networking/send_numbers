@@ -1,0 +1,20 @@
+#!/usr/bin/env ruby
+
+require 'socket'
+
+unless ARGV.length > 1
+  puts "Supply the remote host and port as arguments"
+  exit 1
+end
+
+host = ARGV[0]
+port = ARGV[1].to_i
+
+socket = UDPSocket.new
+socket.connect host, port
+
+for i in 1..10
+  puts "Sending #{i}"
+  socket.send "#{i}\n", 0
+end
+
