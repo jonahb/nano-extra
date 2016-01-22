@@ -1,0 +1,57 @@
+<html>
+  <head>
+    <title>Binary Search</title>
+    <link rel="stylesheet" type="text/css" href="search.css"/>
+  </head>
+  <body>
+    <input type="text" id="nameTextInput" autofocus placeholder="Name"/>
+    <button onclick="searchButtonClick();">Search</button>
+
+    <script type="text/javascript">
+      var names = [
+        "Adam",
+        "Bea",
+        "Chas",
+        "Jo",
+        "Mimi",
+        "Shah",
+        "Tala",
+        "Val",
+        "Zeke"
+      ];
+
+      function binarySearch(array, target) {
+        var lo = 0;
+        var hi = array.length - 1;
+        var mid = Math.floor((hi + lo) / 2);
+
+        while (lo <= hi) {
+          if (array[mid] === target) {
+            return mid;
+          } else if (array[mid] < target) {
+            lo = mid + 1;
+          } else {
+            hi = mid - 1;
+          }
+
+          mid = Math.floor((hi + lo) / 2);
+        }
+
+        return null;
+      }
+
+      // Helper functions
+
+      function searchButtonClick(event) {
+        var name = document.getElementById("nameTextInput").value;
+        var position = binarySearch(names, name);
+
+        if (position === null) {
+          alert(name + " was not found");
+        } else {
+          alert(name + " is at position " + position);
+        }
+      }
+    </script>
+  </body>
+</html>

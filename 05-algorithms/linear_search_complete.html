@@ -1,0 +1,47 @@
+<html>
+  <head>
+    <title>Linear Search</title>
+    <link rel="stylesheet" type="text/css" href="search.css"/>
+  </head>
+  <body>
+    <input type="text" id="nameTextInput" autofocus placeholder="Name"/>
+    <button onclick="searchButtonClick();">Search</button>
+
+    <script type="text/javascript">
+      var names = [
+        "Adam",
+        "Bea",
+        "Chas",
+        "Jo",
+        "Mimi",
+        "Shah",
+        "Tala",
+        "Val",
+        "Zeke"
+      ];
+
+      function linearSearch(array, target) {
+        var i;
+
+        for (i = 0; i < array.length; ++i) {
+          if (array[i] === target) {
+            return i;
+          }
+        }
+
+        return null;
+      }
+
+      function searchButtonClick(event) {
+        var name = document.getElementById("nameTextInput").value;
+        var position = linearSearch(names, name);
+
+        if (position === null) {
+          alert(name + " was not found");
+        } else {
+          alert(name + " is at position " + position);
+        }
+      }
+    </script>
+  </body>
+</html>

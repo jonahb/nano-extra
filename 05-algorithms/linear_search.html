@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <title>Linear Search</title>
+    <link rel="stylesheet" type="text/css" href="search.css"/>
+  </head>
+  <body>
+    <input type="text" id="nameTextInput" autofocus placeholder="Name"/>
+    <button onclick="searchButtonClick();">Search</button>
+
+    <script type="text/javascript">
+      var names = [
+        "Adam",
+        "Bea",
+        "Chas",
+        "Jo",
+        "Mimi",
+        "Shah",
+        "Tala",
+        "Val",
+        "Zeke"
+      ];
+
+      // TODO: Implement this
+
+      function linearSearch(array, target) {
+        // Should return the index of target in array, or null if target not
+        // found
+        return null;
+      }
+
+
+      // Helper functions
+
+      function searchButtonClick(event) {
+        var name = document.getElementById("nameTextInput").value;
+        var position = linearSearch(names, name);
+
+        if (position === null) {
+          alert(name + " was not found");
+        } else {
+          alert(name + " is at position " + position);
+        }
+      }
+    </script>
+  </body>
+</html>
