@@ -23,18 +23,20 @@
       function binarySearch(array, target) {
         var lo = 0;
         var hi = array.length - 1;
-        var mid = Math.floor((hi + lo) / 2);
+        var mid;
+        var value;
 
         while (lo <= hi) {
-          if (array[mid] === target) {
-            return mid;
-          } else if (array[mid] < target) {
-            lo = mid + 1;
-          } else {
-            hi = mid - 1;
-          }
-
           mid = Math.floor((hi + lo) / 2);
+          value = array[mid];
+
+          if (value < target) {
+            lo = mid + 1;
+          } else if (value > target) {
+            hi = mid - 1;
+          } else {
+            return mid;
+          }
         }
 
         return null;
