@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title>Benchmark</title>
+  </head>
+  <body>
+    <button onclick="benchmark(doSomething, 10000);">Benchmark</button>
+
+    <script type="text/javascript">
+      function benchmark(operation, times) {
+
+        var i;
+        var start = Date.now();
+
+        for (i = 0; i < times; ++i) {
+          operation();
+        }
+
+        var end = Date.now();
+        var elapsed = end - start;
+
+        alert(elapsed + " milliseconds elapsed");
+      }
+
+      function doSomething() {
+        console.log("hello");
+      }
+    </script>
+  </body>
+</html>
+
