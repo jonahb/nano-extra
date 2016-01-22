@@ -1,0 +1,53 @@
+<html>
+  <head>
+    <title>Ciphers</title>
+    <link rel="stylesheet" type="text/css" href="cipher.css"/>
+  </head>
+  <body>
+    <textarea id="textarea" autofocus rows="10" cols="80"></textarea><br/>
+    <button id="encipher" onclick="encipherButtonClick();">Encipher</button>
+    <button id="decipher" onclick="decipherButtonClick();">Decipher</button>
+
+    <script type="text/javascript">
+
+      var plainAlphabet  = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ";
+      var cipherAlphabet = "ZYXWVUTSRQPONMLKJIHGFEDCBAzyxwvutsrqponmlkjihgfedcba ";
+
+      // TODO: Implement these!
+
+      function encipher(plaintext) {
+        // Should return the enciphered plaintext as a string
+        return plaintext;
+      }
+
+      function decipher(ciphertext) {
+        // Should return the deciphered ciphertext as a string
+        return ciphertext;
+      }
+
+
+      // Helper functions
+
+      function encipherButtonClick(event) {
+        var text = getText();
+        var ciphertext = encipher(text);
+        setText(ciphertext);
+      }
+
+      function decipherButtonClick(event) {
+        var text = getText();
+        var plaintext = decipher(text);
+        setText(plaintext);
+      }
+
+      function getText() {
+        return document.getElementById("textarea").value;
+      }
+
+      function setText(text) {
+        document.getElementById("textarea").value = text;
+      }
+    </script>
+  </body>
+</html>
+

@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <title>Ciphers</title>
+    <link rel="stylesheet" type="text/css" href="cipher.css"/>
+  </head>
+  <body>
+    <textarea id="textarea" autofocus rows="10" cols="80"></textarea><br/>
+    <button id="encipher" onclick="encipherButtonClick();">Encipher</button>
+    <button id="decipher" onclick="decipherButtonClick();">Decipher</button>
+
+    <script type="text/javascript">
+
+      var plainAlphabet  = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz ";
+      var cipherAlphabet = "ZYXWVUTSRQPONMLKJIHGFEDCBAzyxwvutsrqponmlkjihgfedcba ";
+
+      // TODO: Implement these!
+
+      function encipher(plaintext) {
+        return substitute(plaintext, plainAlphabet, cipherAlphabet);
+      }
+
+      function decipher(ciphertext) {
+        return substitute(ciphertext, cipherAlphabet, plainAlphabet);
+      }
+
+
+      // Helper functions
+
+      function encipherButtonClick(event) {
+        var text = getText();
+        var ciphertext = encipher(text);
+        setText(ciphertext);
+      }
+
+      function decipherButtonClick(event) {
+        var text = getText();
+        var plaintext = decipher(text);
+        setText(plaintext);
+      }
+
+      function getText() {
+        return document.getElementById("textarea").value;
+      }
+
+      function setText(text) {
+        document.getElementById("textarea").value = text;
+      }
+
+      function substitute(text, sourceAlphabet, targetAlphabet) {
+        var i;
+        var result = "";
+
+        for (i = 0; i < text.length; ++i) {
+          var char = text.charAt(i);
+          var alphabetIndex = sourceAlphabet.indexOf(char);
+
+          if (alphabetIndex < 0) {
+            return null;
+          }
+
+          result += targetAlphabet[alphabetIndex];
+        }
+
+        return result;
+      }
+    </script>
+  </body>
+</html>
+
